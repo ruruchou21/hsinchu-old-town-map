@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hsinchu Old Town Map</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="header-content">
+      <p class="eyebrow">HISTORICAL MEMORY PROJECT</p>
+      <h1>Hsinchu Old Town Map</h1>
+      <p class="subtitle">Explore the changing landscape of Hsinchu</p>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <!-- Period Selection -->
+    <nav class="period-navigation">
+      <button class="period-button active"
+              data-period="present">
+        Present
+      </button>
+
+      <button class="period-button"
+              data-period="japanese">
+        Japanese Colonial Period
+      </button>
+    </nav>
+
+    <!-- Map Section -->
+    <section class="map-section">
+
+      <div class="map-heading">
+        <div>
+          <p class="section-label">EXPLORE THE CITY</p>
+          <h2 id="map-title">Present</h2>
+        </div>
+
+        <p id="map-status">Select a landmark to explore.</p>
+      </div>
+
+      <!-- Present Map -->
+      <div id="present-map" class="map-canvas present-map">
+
+        <div id="present-markers" class="marker-layer">
+        </div>
+
+      </div>
+
+      <!-- Japanese Colonial Period Map -->
+      <div id="historical-map"
+           class="map-canvas historical-map hidden">
+
+        <div class="historical-map-title">
+          <span>HISTORICAL MAP</span>
+          <h3>Hsinchu during the Japanese Colonial Period</h3>
+        </div>
+
+        <div id="historical-markers" class="marker-layer">
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Landmark List -->
+    <section class="landmark-section">
+
+      <div class="list-heading">
+        <p class="section-label">LANDMARKS</p>
+        <h2>Places to Explore</h2>
+      </div>
+
+      <div id="landmark-list" class="landmark-list">
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Detail Modal -->
+  <div id="detail-overlay" class="detail-overlay hidden">
+
+    <div class="detail-modal">
+
+      <button id="close-modal" class="close-button">
+        &times;
+      </button>
+
+      <div class="modal-header">
+        <p class="section-label">LANDMARK INFORMATION</p>
+        <h2 id="detail-title"></h2>
+        <p id="detail-subtitle"></p>
+      </div>
+
+      <section class="detail-section">
+
+        <h3>More Old Pics</h3>
+
+        <div id="old-pics" class="old-pics-grid">
+        </div>
+
+      </section>
+
+      <section class="detail-section">
+
+        <h3>Interesting Fact</h3>
+
+        <div id="detail-fact" class="fact-card">
+        </div>
+
+      </section>
+
+      <section class="detail-section">
+
+        <h3>Interview Video</h3>
+
+        <div id="video-area" class="video-frame">
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,527 @@
+/* =========================
+   General Settings
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f1e9;
+  color: #303b32;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =========================
+   Header
+========================= */
+
+.site-header {
+  padding: 65px 20px 50px;
+  text-align: center;
+  background: #e9e5d9;
+  border-bottom: 1px solid #d5d0c3;
+}
+
+.eyebrow,
+.section-label {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #8b806b;
+}
+
+.site-header h1 {
+  margin: 15px 0;
+  font-size: 42px;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: #777568;
+  font-size: 15px;
+}
+
+
+/* =========================
+   Main Layout
+========================= */
+
+.main-container {
+  width: min(1100px, 90%);
+  margin: 45px auto 80px;
+}
+
+
+/* =========================
+   Period Navigation
+========================= */
+
+.period-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.period-button {
+  padding: 12px 25px;
+  border: 1px solid #9b9b86;
+  background: transparent;
+  color: #59624f;
+  transition: 0.25s;
+}
+
+.period-button:hover,
+.period-button.active {
+  background: #58644f;
+  color: white;
+}
+
+
+/* =========================
+   Map Heading
+========================= */
+
+.map-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.map-heading h2 {
+  margin: 8px 0 0;
+  font-size: 30px;
+  font-weight: normal;
+}
+
+#map-status {
+  color: #888475;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+
+
+/* =========================
+   Map Canvas
+========================= */
+
+.map-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1000 / 650;
+  overflow: hidden;
+  border: 1px solid #d4cdbd;
+  box-shadow: 0 5px 20px rgba(50, 45, 30, 0.08);
+}
+
+/* Present Map */
+
+.present-map {
+  background-color: #e7e8dc;
+
+  /* 現代地圖圖片放在這裡 */
+  background-image: url("images/present-map.jpg");
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Japanese Colonial Period Map */
+
+.historical-map {
+  background-color: #e8dfc9;
+
+  background-image:
+    linear-gradient(
+      35deg,
+      transparent 47%,
+      rgba(137, 119, 87, 0.15) 48%,
+      rgba(137, 119, 87, 0.15) 49%,
+      transparent 50%
+    ),
+    linear-gradient(
+      120deg,
+      transparent 47%,
+      rgba(137, 119, 87, 0.13) 48%,
+      rgba(137, 119, 87, 0.13) 49%,
+      transparent 50%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 48px,
+      rgba(137, 119, 87, 0.12) 49px,
+      transparent 50px
+    );
+
+  background-size: 180px 180px, 220px 220px, 100% 100%;
+}
+
+/* Historical Map Decoration */
+
+.historical-map::before {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 1px;
+  left: 10%;
+  top: 50%;
+  background: rgba(130, 110, 75, 0.35);
+  transform: rotate(-12deg);
+}
+
+.historical-map::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 85%;
+  left: 55%;
+  top: 8%;
+  background: rgba(130, 110, 75, 0.35);
+  transform: rotate(20deg);
+}
+
+.historical-map-title {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  z-index: 1;
+  color: #857454;
+  pointer-events: none;
+}
+
+.historical-map-title span {
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.historical-map-title h3 {
+  margin-top: 5px;
+  font-size: 17px;
+  font-weight: normal;
+}
+
+
+/* =========================
+   Map Markers
+========================= */
+
+.marker-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.map-marker {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translate(-50%, -50%);
+  border: none;
+  background: transparent;
+  color: #344536;
+  white-space: nowrap;
+  transition: 0.2s;
+}
+
+.marker-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #596a51;
+  color: white;
+  border: 2px solid #f5f1e7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+
+.marker-name {
+  padding: 5px 9px;
+  background: rgba(250, 248, 239, 0.9);
+  border: 1px solid rgba(100, 100, 80, 0.25);
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+.map-marker:hover {
+  z-index: 10;
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.map-marker:hover .marker-number {
+  background: #9b704a;
+}
+
+
+/* =========================
+   Landmark List
+========================= */
+
+.landmark-section {
+  margin-top: 55px;
+}
+
+.list-heading {
+  margin-bottom: 20px;
+}
+
+.list-heading h2 {
+  font-size: 27px;
+  font-weight: normal;
+  margin-top: 8px;
+}
+
+.landmark-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.landmark-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: #eeebe2;
+  border: 1px solid #ded9cc;
+  text-align: left;
+  color: #303b32;
+  transition: 0.2s;
+}
+
+.landmark-card:hover {
+  background: #e4e1d6;
+  transform: translateY(-2px);
+}
+
+.card-number {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  color: #9a8c70;
+}
+
+.card-text h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.card-text p {
+  margin: 0;
+  color: #898475;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+
+/* =========================
+   Detail Modal
+========================= */
+
+.detail-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  background: rgba(25, 30, 25, 0.7);
+}
+
+.detail-modal {
+  position: relative;
+  width: min(750px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 45px;
+  background: #f5f2e9;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  border: none;
+  background: transparent;
+  color: #686858;
+  font-size: 30px;
+}
+
+.modal-header {
+  padding-bottom: 25px;
+  border-bottom: 1px solid #d8d2c4;
+}
+
+.modal-header h2 {
+  margin: 12px 0 8px;
+  font-size: 30px;
+  font-weight: normal;
+}
+
+#detail-subtitle {
+  color: #898475;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+
+.detail-section {
+  margin-top: 30px;
+}
+
+.detail-section h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+
+/* =========================
+   Old Pictures
+========================= */
+
+.old-pics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.old-pics-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #ded8c9;
+}
+
+
+/* =========================
+   Interesting Fact
+========================= */
+
+.fact-card {
+  padding: 20px;
+  background: #eae6da;
+  border-left: 3px solid #8a9278;
+  color: #55594c;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+
+/* =========================
+   Interview Video
+========================= */
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #dedbd1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #777568;
+  font-family: Arial, sans-serif;
+}
+
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-placeholder {
+  text-align: center;
+}
+
+
+/* =========================
+   Responsive Design
+========================= */
+
+@media (max-width: 650px) {
+
+  .site-header {
+    padding: 45px 15px;
+  }
+
+  .site-header h1 {
+    font-size: 30px;
+  }
+
+  .main-container {
+    width: 94%;
+  }
+
+  .period-navigation {
+    flex-wrap: wrap;
+  }
+
+  .period-button {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+
+  .map-heading {
+    display: block;
+  }
+
+  #map-status {
+    margin-top: 10px;
+  }
+
+  .map-marker {
+    gap: 4px;
+  }
+
+  .marker-number {
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+  }
+
+  .marker-name {
+    padding: 4px 5px;
+    font-size: 9px;
+  }
+
+  .landmark-list {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-modal {
+    padding: 35px 20px;
+  }
+
+  .modal-header h2 {
+    font-size: 24px;
+  }
+
+  .old-pics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
